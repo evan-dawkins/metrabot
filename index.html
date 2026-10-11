@@ -580,6 +580,11 @@ button{touch-action:manipulation}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.25s;animation-timing-function:ease}
 @media (prefers-reduced-motion:reduce){*,::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important;transition:none!important}}
 @media (prefers-reduced-motion:reduce){.wv{opacity:calc(.3 * var(--wmul))}}
+.mark a.sib{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--faint)}
+.mark a.sib:hover,.mark a.sib:focus-visible{color:var(--ink);border-bottom-color:var(--ink)}
+#intro .sib{font-size:14.5px;color:var(--muted);margin:0 0 14px}
+#intro .sib a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--faint)}
+#intro .sib a:hover{border-bottom-color:var(--ink)}
 </style>
 </head>
 <body>
@@ -590,7 +595,7 @@ button{touch-action:manipulation}
 <div id="horizon"></div>
 
 <div class="top">
-  <div class="mark"><b>MetraBot</b><span><i class="slogan">The way to really fly</i> · Unofficial Chicagoland live map</span>
+  <div class="mark"><b>MetraBot</b><span><i class="slogan">The way to really fly</i> · Unofficial Chicagoland live map · <a class="sib" href="https://evan-dawkins.github.io/ctabot/" title="CTABot: the same live map for the CTA 'L'">Like this? Try CTABot →</a></span>
     <div class="tools">
       <button id="helpBtn" aria-label="What is this? Open the welcome guide" title="What is this? (?)" aria-controls="intro">?</button>
       <button id="snd" class="ibtn snd" aria-pressed="true" aria-label="Sound" aria-haspopup="menu" aria-expanded="false" aria-controls="sndmenu" title="Sound (M mutes)"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="sp" d="M3 7.6h3.1L10.4 4v12l-4.3-3.6H3z"/><path class="w1" d="M13.2 7.6c.9.6 1.4 1.4 1.4 2.4s-.5 1.8-1.4 2.4"/><path class="w2" d="M15.5 5.2c1.7 1.2 2.6 2.9 2.6 4.8s-.9 3.6-2.6 4.8"/><path class="x" d="M13.2 7.8l4.6 4.4M17.8 7.8l-4.6 4.4"/></svg></button>
@@ -656,6 +661,7 @@ button{touch-action:manipulation}
     <li><span class="ic" style="--c:#93C94F"><svg viewBox="0 0 24 24"><path d="M6 19v-6M12 19V6M18 19v-9"/></svg></span><span><b>Check the report card</b><small>Tap the chart button to see how many trains ran on time today.</small></span></li>
     <li><span class="ic" style="--c:#EE87AE"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path class="f" d="M17 12l4-3v6z"/><path d="M12 7.5V12l3 2"/></svg></span><span><b>Leave it be</b><small>After 2 minutes (20 seconds on a phone) it rides along with live trains. Close the train's card (×) to stop.</small></span></li>
   </ul>
+  <p class="sib">Like this? Try <a href="https://evan-dawkins.github.io/ctabot/">CTABot</a>, the same kind of live map for the CTA &lsquo;L&rsquo;.</p>
   <div class="foot">
     <button class="go">Start watching</button>
     <label><input type="checkbox" id="introHide">Don't show this on start</label>
