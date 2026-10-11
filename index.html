@@ -580,8 +580,9 @@ button{touch-action:manipulation}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.25s;animation-timing-function:ease}
 @media (prefers-reduced-motion:reduce){*,::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important;transition:none!important}}
 @media (prefers-reduced-motion:reduce){.wv{opacity:calc(.3 * var(--wmul))}}
-.mark a.sib{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--faint)}
-.mark a.sib:hover,.mark a.sib:focus-visible{color:var(--ink);border-bottom-color:var(--ink)}
+.zoom a.sib{display:flex;align-items:center;padding:0 8px;border-radius:7px;font-size:13.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.zoom a.sib:hover,.zoom a.sib:focus-visible{background:var(--hover);color:var(--ink)}
+@media (max-width:400px){.zoom a.sib .lt{display:none}}
 #intro .sib{font-size:14.5px;color:var(--muted);margin:0 0 14px}
 #intro .sib a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--faint)}
 #intro .sib a:hover{border-bottom-color:var(--ink)}
@@ -595,7 +596,7 @@ button{touch-action:manipulation}
 <div id="horizon"></div>
 
 <div class="top">
-  <div class="mark"><b>MetraBot</b><span><i class="slogan">The way to really fly</i> · Unofficial Chicagoland live map · <a class="sib" href="https://evan-dawkins.github.io/ctabot/" title="CTABot: the same live map for the CTA 'L'">Like this? Try CTABot →</a></span>
+  <div class="mark"><b>MetraBot</b><span><i class="slogan">The way to really fly</i> · Unofficial Chicagoland live map</span>
     <div class="tools">
       <button id="helpBtn" aria-label="What is this? Open the welcome guide" title="What is this? (?)" aria-controls="intro">?</button>
       <button id="snd" class="ibtn snd" aria-pressed="true" aria-label="Sound" aria-haspopup="menu" aria-expanded="false" aria-controls="sndmenu" title="Sound (M mutes)"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="sp" d="M3 7.6h3.1L10.4 4v12l-4.3-3.6H3z"/><path class="w1" d="M13.2 7.6c.9.6 1.4 1.4 1.4 2.4s-.5 1.8-1.4 2.4"/><path class="w2" d="M15.5 5.2c1.7 1.2 2.6 2.9 2.6 4.8s-.9 3.6-2.6 4.8"/><path class="x" d="M13.2 7.8l4.6 4.4M17.8 7.8l-4.6 4.4"/></svg></button>
@@ -618,6 +619,7 @@ button{touch-action:manipulation}
   <span class="focusnote" id="focusnote"></span>
 </div>
 <div class="zoom">
+  <a class="sib" href="https://evan-dawkins.github.io/ctabot/" title="CTABot: the same live map for the CTA 'L'"><span class="lt">Like this?&nbsp;</span>Try CTABot&nbsp;→</a><span class="sep"></span>
   <button id="zout" title="Zoom out (−)" aria-label="Zoom out">−</button>
   <button id="zin" title="Zoom in (+)" aria-label="Zoom in">+</button>
   <button id="fit" class="fit" title="Show the whole network (0)" aria-label="Show the whole network"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg></button>
