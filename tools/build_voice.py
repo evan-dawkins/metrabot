@@ -7,15 +7,19 @@ Every piece the check-ins can say is recorded once with Kokoro, a free open-sour
   voice/manifest.json       where each piece starts and how long it is, plus which piece each station uses
 The page stitches pieces together at play time. Nothing is generated live, so it costs nothing to run.
 
-Run:  python3 tools/build_voice.py <folder with kokoro-v1.0.onnx + voices-v1.0.bin> <stations.json>
+Run:  python3 tools/build_voice.py <folder with kokoro-v1.0.onnx + voices-v1.0.bin> <stations.json> [line,line,...]
+      (with lines: re-records just those, keeping the rest)
 stations.json comes from the page: {lines:{key:{code,name,st:[ids]}}, labels:{id:label}}.
 """
 import json, os, re, subprocess, sys, tempfile
 import numpy as np, soundfile as sf
 from num2words import num2words
 from kokoro_onnx import Kokoro
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pronounce import needs_fix, phonemes   # Chicago pronunciations (Cicero, Ogilvie, ...)
 
 MODEL, STATIONS = sys.argv[1], sys.argv[2]
+ONLY = sys.argv[3].split(",") if len(sys.argv) > 3 else None   # re-record just these lines (keeps the rest)
 OUT = os.path.join(os.path.dirname(__file__), "..", "voice")
 os.makedirs(OUT, exist_ok=True)
 k = Kokoro(os.path.join(MODEL, "kokoro-v1.0.onnx"), os.path.join(MODEL, "voices-v1.0.bin"))
@@ -44,7 +48,10 @@ def say_station(sid, label):
 def slug(s): return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 def render(text):
-    a, sr = k.create(text, voice=VOICE, speed=SPEED, lang="en-us")
+    if needs_fix(text):
+        a, sr = k.create(phonemes(k, text), voice=VOICE, speed=SPEED, lang="en-us", is_phonemes=True)
+    else:
+        a, sr = k.create(text, voice=VOICE, speed=SPEED, lang="en-us")
     nz = np.where(np.abs(a) > 0.008)[0]
     a = a[max(0, nz[0] - int(sr * .02)):nz[-1] + int(sr * .06)] if len(nz) else a
     rms = np.sqrt(np.mean(a ** 2)) or 1
@@ -84,9 +91,11 @@ core += [("t_now", "coming up now."), ("t_up", "coming up."), ("t_1", "in about 
 core += [(f"t_{n}", f"in about {n2w(n)} minutes.") for n in range(2, 91)]
 core += [("end_0", "That's the check-in. Back out to the full map."), ("end_1", "That's all for this one. Back to the whole network."),
          ("end_2", "Okay, that wraps it up. Back out to the map.")]
-manifest = {"core": pack("core", core), "lines": {}, "stn": {}}
+manifest = json.load(open(os.path.join(OUT, "manifest.json"))) if ONLY else {"core": pack("core", core), "lines": {}, "stn": {}}
 # ---------- per line: station phrases ----------
 for key, L in D["lines"].items():
+    if ONLY and key not in ONLY:
+        continue
     items, seen = [], set()
     for sid in L["st"]:
         sp = say_station(sid, D["labels"].get(sid, sid)); sl = slug(sp)
