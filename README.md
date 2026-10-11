@@ -107,7 +107,7 @@ Leave the page alone for 2 minutes (20 seconds on a phone) and it turns into a s
 1. The camera swoops in behind a live train, turning and tilting the map so you're riding along.
 2. The train's card pops up with where it's headed and its next stop.
 3. A soft voice **checks in** on the train.
-4. After about a minute it pulls back to the whole map, rests, then picks another train.
+4. After about 50 seconds it pulls back to the whole map, rests for 25 seconds, then picks another train.
 
 It keeps going until you close the train's card with **×**. Moving the mouse, scrolling or pressing keys won't stop it. On phones the map turns but doesn't tilt. If your device is set to reduce motion, the screensaver stays off.
 
@@ -128,6 +128,7 @@ Like a weather stream checking in on a live camera, the voice checks in three ti
 - Turn it on or off in the **speaker** menu → **Train check-ins**. The page remembers your choice.
 - It only checks in during train of the moment, never on a train you picked yourself.
 - Like all sound, the voice starts after your first click.
+- It keeps going in a background tab: switch to another tab and you'll still hear a check-in on a new train every minute or so (the map just isn't drawn until you come back).
 
 The voice is free: every phrase was recorded once ahead of time with [Kokoro](https://github.com/thewh1teagle/kokoro-onnx), an open-source voice, and the page stitches the pieces together.
 
