@@ -427,7 +427,8 @@ body.chasing .stlbl,body.chasing .lakelbl{display:none}
 .stlbl{font-family:var(--sans);font-size:13px;font-weight:600;fill:var(--lakelbl);letter-spacing:.32em}
 :root[data-theme="light"] .stlbl{fill:#97A8B6}
 .shore{fill:none;stroke:var(--shore);stroke-width:1.8;vector-effect:non-scaling-stroke}
-.lakelbl{font-family:var(--sans);font-size:26px;font-weight:500;fill:var(--lakelbl);letter-spacing:.3em}
+.lakelbl{font-family:var(--sans);font-size:36px;font-weight:600;fill:#3F77A0;letter-spacing:.42em}
+:root[data-theme="light"] .lakelbl{fill:#3E86BD}   /* as CTABot's: big, spaced, lake blue */
 /* lake water: slow drifting glints + a few soft ripples. They fade in and out as they drift, so nothing pops.
    Glints update ~12x a second (steps) because the motion is slow; that keeps the long-running cost low. */
 .water{pointer-events:none}
@@ -925,7 +926,7 @@ el("path",{class:"shore",d:"M800,-3000 L800,90 L892,182 L892,560 L975,643 L1048,
     el("circle",{class:"rp",cx:x.toFixed(1),cy:y.toFixed(1),r:6,style:`--dur:${dur.toFixed(1)}s;--dl:${(-rnd()*dur).toFixed(1)}s`},g);
   }
 })();
-el("text",{class:"lakelbl",x:1150,y:420,transform:"rotate(90 1150 420)","text-anchor":"middle"},world).textContent="Lake Michigan";
+el("text",{class:"lakelbl",x:1165,y:420,transform:"rotate(90 1165 420)","text-anchor":"middle"},world).textContent="LAKE MICHIGAN";
 
 const trackG=el("g",{},world),stnG=el("g",{},world),trailG=el("g",{},world),trainG=el("g",{},world);
 const lineEls={};
