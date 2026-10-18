@@ -140,7 +140,7 @@ Click the **speaker** next to the title to pick one:
 | Sound | What it is |
 |---|---|
 | **Brown noise** | A soft, steady hush. |
-| **Water** | Gentle moving water with the odd bubble. |
+| **Water** | Soft bubbles over a quiet, low murmur of water. |
 | **Sonar** | A deep underwater rumble. A radar sweeps the map once every 30 seconds and gives a soft, low ping when fresh train data arrives. |
 | **Off** | Silence. |
 | **Train check-ins** | A separate on/off switch at the bottom of the menu for the voice that checks in during train of the moment. See above. |
