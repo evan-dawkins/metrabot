@@ -580,7 +580,13 @@ button{touch-action:manipulation}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.25s;animation-timing-function:ease}
 @media (prefers-reduced-motion:reduce){*,::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important;transition:none!important}}
 @media (prefers-reduced-motion:reduce){.wv{opacity:calc(.3 * var(--wmul))}}
-.zoom a.sib{display:flex;align-items:center;padding:0 8px;border-radius:7px;font-size:13.5px;color:var(--muted);text-decoration:none;white-space:nowrap}
+.zoom .sibw{display:flex;align-items:center}
+.zoom button.sibt{display:inline-flex;align-items:center;justify-content:center;min-width:26px;padding:0 5px;color:var(--muted)}
+.zoom button.sibt svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--t-base,.25s) ease}
+.zoom .sibw.open button.sibt svg{transform:rotate(180deg)}
+.zoom a.sib{display:flex;align-items:center;padding:0;max-width:0;opacity:0;visibility:hidden;overflow:hidden;border-radius:7px;font-size:13.5px;color:var(--muted);text-decoration:none;white-space:nowrap;
+  transition:max-width .35s ease,opacity .25s ease,padding .35s ease,visibility 0s linear .35s}
+.zoom .sibw.open a.sib{max-width:240px;opacity:1;visibility:visible;padding:0 8px;transition:max-width .35s ease,opacity .3s ease .05s,padding .35s ease,visibility 0s}
 .zoom a.sib:hover,.zoom a.sib:focus-visible{background:var(--hover);color:var(--ink)}
 @media (max-width:400px){.zoom a.sib .lt{display:none}}
 #intro .sib{font-size:14.5px;color:var(--muted);margin:0 0 14px}
@@ -619,11 +625,19 @@ button{touch-action:manipulation}
   <span class="focusnote" id="focusnote"></span>
 </div>
 <div class="zoom">
-  <a class="sib" href="https://evan-dawkins.github.io/ctabot/" title="CTABot: the same live map for the CTA 'L'"><span class="lt">Like this?&nbsp;</span>Try CTABot&nbsp;→</a><span class="sep"></span>
+  <span class="sibw" id="sibw"><button class="sibt" id="sibt" aria-expanded="false" aria-controls="sibl" title="Like this? Try CTABot" aria-label="Show the link to CTABot"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></button><a class="sib" id="sibl" href="https://evan-dawkins.github.io/ctabot/" title="CTABot: the same live map for the CTA 'L'" tabindex="-1"><span class="lt">Like this?&nbsp;</span>Try CTABot&nbsp;→</a></span><span class="sep"></span>
   <button id="zout" title="Zoom out (−)" aria-label="Zoom out">−</button>
   <button id="zin" title="Zoom in (+)" aria-label="Zoom in">+</button>
   <button id="fit" class="fit" title="Show the whole network (0)" aria-label="Show the whole network"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10"/></svg></button>
 </div>
+<script>
+/* "Like this? Try CTABot" folds into a small chevron beside the zoom buttons; your choice is remembered */
+(function(){const w=document.getElementById("sibw"),b=document.getElementById("sibt"),a=document.getElementById("sibl");if(!w)return;
+  const set=(o,save)=>{w.classList.toggle("open",o);b.setAttribute("aria-expanded",String(o));b.setAttribute("aria-label",(o?"Hide":"Show")+" the link to CTABot");
+    a.tabIndex=o?0:-1;if(save)try{localStorage.setItem("metrabot.sibOpen",o?"1":"0")}catch(_){}};
+  let o=false;try{o=localStorage.getItem("metrabot.sibOpen")==="1"}catch(_){}set(o,false);
+  b.addEventListener("click",e=>{e.stopPropagation();set(!w.classList.contains("open"),true)});})();
+</script>
 
 <div id="card" class="pnl" role="dialog" aria-label="Train details"></div>
 <div id="spop" class="pnl" role="dialog" aria-label="Station"></div>
