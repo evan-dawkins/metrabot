@@ -37,6 +37,7 @@ New here? Click **?** next to the title any time for a quick guide.
 | Move the map | Drag | Drag with one finger |
 | Zoom | Scroll, or **+** / **−** | Pinch |
 | See the whole network | **⛶** button, or **0** | **⛶** button |
+| Visit CTABot | Point at **‹** by the zoom buttons | Tap **‹** by the zoom buttons |
 | Show just one line | Click it in the bottom bar | Tap it in the bottom bar |
 | Fold the line bar | Click **All lines** | Tap **All lines** |
 | Close a card | **Esc**, or click the map | Tap the map |
@@ -183,6 +184,14 @@ Click the **sun** button, or press **T**.
 
 <img src="docs/2026-10-08-overview-light.png" alt="The map in light mode" width="640">
 
+## CTABot, the sister map
+
+[CTABot](https://evan-dawkins.github.io/ctabot/) is the same kind of live map for the CTA 'L'.
+
+A small **‹** beside the zoom buttons links to it. Point at it and "Like this? Try CTABot →" slides out; move away and it folds back. On a phone, tap it.
+
+<img src="docs/2026-10-17-ctabot-link.png" alt="The CTABot link folded into a small arrow, then slid open" width="360">
+
 ## Is the data real?
 
 Yes. Train positions, times, alerts and cancellations come straight from Metra's live feeds, and scheduled times come from Metra's published timetable. Nothing is guessed.
@@ -230,5 +239,5 @@ Changes to `worker.js` need to be pasted into Cloudflare too, since GitHub only 
 
 ## Good to know
 
-- It covers Metra only, not CTA trains.
+- It covers Metra only. For CTA 'L' trains, see [CTABot](https://evan-dawkins.github.io/ctabot/).
 - It's an independent fan project and isn't affiliated with Metra.
